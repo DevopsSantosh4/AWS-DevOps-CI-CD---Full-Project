@@ -1,0 +1,5 @@
+my-ansible-project/
+├── ansible.cfg
+├── inventory
+├── playbook.yml
+└── README.md
