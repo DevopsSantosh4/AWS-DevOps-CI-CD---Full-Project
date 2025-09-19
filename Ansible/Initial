@@ -1,0 +1,12 @@
+1.Initialize Git repo:
+git init
+git add .
+git commit -m "Initial commit: Ansible playbook"
+
+2. Create GitHub repo using CLI (if installed):
+gh repo create my-ansible-project --public --source=. --remote=origin --push
+(Requires GitHub CLI and login via gh auth login.)
+OR manually create repo on GitHub and push
+git remote add origin https://github.com/YOUR_USERNAME/my-ansible-project.git
+git branch -M main
+git push -u origin main
