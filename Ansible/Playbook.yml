@@ -1,0 +1,11 @@
+---
+- name: Sample Playbook
+  hosts: webservers
+  tasks:
+    - name: Ping the server
+      ping:
+
+    - name: Create a file
+      file:
+        path: /tmp/ansible_test_file.txt
+        state: touch
