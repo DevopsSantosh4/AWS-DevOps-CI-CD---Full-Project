@@ -1,0 +1,49 @@
+
+---
+
+## ✅ 3. GitHub Setup Commands
+
+Here are the bash commands to:
+
+1. Create the folder
+2. Add the Ansible files
+3. Initialize Git
+4. Push to a new GitHub repository
+
+### **Create Project Locally**
+```bash
+mkdir my-ansible-project && cd my-ansible-project
+
+# Create files
+echo -e "[defaults]\ninventory = ./inventory\nhost_key_checking = False" > ansible.cfg
+echo -e "[webservers]\nlocalhost ansible_connection=local" > inventory
+cat <<EOF > playbook.yml
+---
+- name: Sample Playbook
+  hosts: webservers
+  tasks:
+    - name: Ping the server
+      ping:
+
+    - name: Create a file
+      file:
+        path: /tmp/ansible_test_file.txt
+        state: touch
+EOF
+cat <<EOF > README.md
+# My Ansible Project
+
+This is a simple Ansible project that pings the localhost and creates a file using a playbook.
+
+## Files
+
+- \`ansible.cfg\`: Ansible configuration file.
+- \`inventory\`: List of hosts (in this case, localhost).
+- \`playbook.yml\`: The main playbook file.
+
+## Usage
+
+\`\`\`bash
+ansible-playbook playbook.yml
+\`\`\`
+EOF
