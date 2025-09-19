@@ -2,7 +2,6 @@
 Full pre-requisites
 
 # Amazon Prime Clone Deployment Project
-![Pipeline Overview](./src/Overview.png)
 
 ## Project Overview
 This project demonstrates deploying an Amazon Prime clone using a set of DevOps tools and practices. The primary tools include:
@@ -33,7 +32,7 @@ This project demonstrates deploying an Amazon Prime clone using a set of DevOps 
 ## Infrastructure Setup Using Terraform
 1. **Clone the Repository** (Open Command Prompt & run below):
    ```bash
-   git clone https://github.com/pandacloud1/DevopsProject2.git
+   git clone https://github.com/DevopsSantosh4/AWS-DevOps-CI-CD-Project---Full/edit/main/README.md
    cd DevopsProject2
    code .   # this command will open VS code in backend
    ```
