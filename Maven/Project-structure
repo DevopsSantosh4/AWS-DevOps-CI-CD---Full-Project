@@ -1,0 +1,170 @@
+maven-nexus-helm-setup/
+├── maven/
+│   └── pom.xml
+├── nexus/
+│   └── docker-compose.yml
+├── helm/
+│   └── mychart/
+│       ├── Chart.yaml
+│       ├── templates/
+│       │   └── deployment.yaml
+├── README.md
+
+
+1. Maven Setup (maven/pom.xml)
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>demo</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!-- Example dependency -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
+
+2. Nexus Setup (nexus/docker-compose.yml)
+version: '3'
+services:
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    restart: unless-stopped
+
+volumes:
+  nexus-data:
+
+
+ Nexus will be available at: http://localhost:8081
+
+ 3. Helm Setup (helm/mychart/)
+helm/mychart/Chart.yaml
+apiVersion: v2
+name: mychart
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+helm/mychart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-app
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-app
+    spec:
+      containers:
+        - name: myapp
+          image: nginx
+          ports:
+            - containerPort: 80
+
+4. README.md
+# Maven + Nexus + Helm Setup
+
+This repository includes setup files for:
+
+- Maven (Java project)
+- Nexus (Docker-based artifact repository)
+- Helm (Sample chart)
+
+---
+
+##  Maven
+
+Path: `maven/pom.xml`
+
+Build with:
+```bash
+cd maven
+mvn clean install
+
+ Nexus
+
+Path: nexus/docker-compose.yml
+
+Run with:
+
+cd nexus
+docker-compose up -d
+
+
+Access: http://localhost:8081
+
+ Helm
+
+Path: helm/mychart
+
+Install with:
+
+cd helm/mychart
+helm install myrelease .
+
+
+---
+
+##  5. GitHub Commands (Shell)
+
+You can use these to set up the project and push to GitHub.
+
+### **Create the folder and files**
+```bash
+mkdir -p maven-nexus-helm-setup/{maven,nexus,helm/mychart/templates}
+cd maven-nexus-helm-setup
+
+
+
+
+
+
+Create files using cat or copy-paste the content above into:
+
+maven/pom.xml
+
+nexus/docker-compose.yml
+
+helm/mychart/Chart.yaml
+
+helm/mychart/templates/deployment.yaml
+
+README.md
+
+Git Commands to Push to GitHub
+git init
+git add .
+git commit -m "Initial commit: Maven, Nexus, and Helm setup"
+# Create GitHub repo using CLI
+gh repo create maven-nexus-helm-setup --public --source=. --remote=origin --push
+
+
+Or manually create a GitHub repo and push:
+
+git remote add origin https://github.com/YOUR_USERNAME/maven-nexus-helm-setup.git
+git branch -M main
+git push -u origin main
