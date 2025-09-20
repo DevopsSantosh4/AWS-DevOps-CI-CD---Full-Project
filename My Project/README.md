@@ -33,7 +33,7 @@ This project demonstrates deploying an Amazon Prime clone using a set of DevOps 
 1. **Clone the Repository** (Open Command Prompt & run below):
    ```bash
    git clone https://github.com/DevopsSantosh4/AWS-DevOps-CI-CD-Project---Full/edit/main/README.md
-   cd DevopsProject2
+   cd AWS-DevOps-CI-CD-Project
    code .   # this command will open VS code in backend
    ```
 2. **Initialize and Apply Terraform**:
